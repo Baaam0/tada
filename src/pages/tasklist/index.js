@@ -43,7 +43,7 @@ export default function Home({taskLists}) {
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
-          placeholder='tasklist title' 
+          placeholder='make new task list' 
           onChange={(e) => setTitle(e.target.value)}
         />
         <button type='submit'>add</button>
@@ -52,11 +52,11 @@ export default function Home({taskLists}) {
 
     <div className={styles.tasklists}>
       {showTaskLists.map((tasklist) => (
-        <div key={tasklist.id}>
+        <a key={tasklist.id} href={`/tasklist/${tasklist.id}`} className={styles.tasklist}>
           <h2>{tasklist.title}</h2>
           <h2>{tasklist.userId}</h2>
-          <h2>{tasklist.createdAt}</h2>
-        </div>
+          <h2>created : {new Date(tasklist.createdAt).toLocaleString()}</h2>
+        </a>
       ))}
     </div>
     </div>

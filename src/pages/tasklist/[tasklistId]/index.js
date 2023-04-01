@@ -6,10 +6,15 @@ import { prisma } from '../../../../server/db/client'
 import styles from '@/styles/Home.module.css'
 
 
+
 export default function Home({taskLists, tasks}) {
+  
   const [title, setTitle] = useState("");
   const [showTasks, setShowTasks] = useState(tasks);
   const [showTaskLists, setShowTaskLists] = useState(taskLists);
+  const [priority, setPriority] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     setShowTasks(tasks)
@@ -33,29 +38,35 @@ export default function Home({taskLists, tasks}) {
     </div>
 
     <div className={styles.tasklist}>
-    <h1 style={{backgroundColor: "red"}}>{showTaskLists.map((taskList) => (
-      <div key={taskList.id}>
-        <h2>{taskList.title}</h2>
+    <h1>{showTaskLists.map((tasks) => (
+      <div key={tasks.id}>
+        <h2>{tasks.title}</h2>
       </div>
     ))}
     </h1>
     </div>
 
-    <div className={styles.input}>
+    <div className={styles.addTask}>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder='task title' onChange={(e) => setTitle(e.target.value)}/>
-        <button type='submit'>add</button>
+        <input type="text" placeholder='priority' onChange={(e) => setPriority(e.target.value)}/>
+        <input type="date" placeholder='due date' onChange={(e) => setDueDate(e.target.value)}/>
+        <textarea placeholder='description' onChange={(e) => setDescription(e.target.value)}></textarea>
+        <button type='submit'>add task</button>
       </form>
     </div> 
 
     <div className={styles.tasks}> 
       {showTasks.map((tasks) => (
-        <div key={tasks.id}>
-          <h2>{tasks.title}</h2>
-          <h2>{tasks.priority}</h2>
-          <h2>{tasks.userId}</h2>
+        <div key={tasks.id} className={styles.task}>
+          <div className={styles.cont1}>
+            <h2>{tasks.title}</h2>
+              <div className={styles.cont2}>
+                <h2>Priority: {tasks.priority}</h2>   
+                <h2>Due date: {new Date(tasks.dueDate).toLocaleString('en-CA')}</h2>
+              </div>
+          </div>
           <h2>{tasks.description}</h2>
-          <h2>{tasks.dueDate}</h2>
         </div>
       ))}
     </div>
@@ -65,9 +76,21 @@ export default function Home({taskLists, tasks}) {
   }
 
   
-export async function getServerSideProps() {
-  const tasks = await prisma.task.findMany()
-  const tasklists = await prisma.taskList.findMany()
+export async function getServerSideProps(context) {
+  const {tasklistId} = context.params;
+  console.log(tasklistId)
+ 
+  const tasks = await prisma.task.findMany({
+    where: {
+      taskListId: parseInt(tasklistId),
+  }
+  })
+
+  const tasklists = await prisma.taskList.findMany({
+    where: {
+      id: parseInt(tasklistId),
+    },  
+  })
 
   return {
     props: {

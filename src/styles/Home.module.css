@@ -1,5 +1,5 @@
 .main {
-  margin: 7rem 1rem 3rem;
+  margin: 8rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,6 +39,11 @@
   text-align: center;
   font-size: 1.5rem;
   border-radius: 2rem;
+  transition: all 0.3s ease 0s;
+}
+
+.start div:hover {
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 5px -2px;
 }
 
 .nav {
@@ -51,6 +56,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .nav button {
@@ -79,7 +85,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3.5rem;
   text-align: center;
 }
 
@@ -118,12 +124,132 @@
   margin: 1em;
   line-height: 1.15;
   font-size: 1.5rem;
-  text-align: center;
+  text-align: left;
   padding: 0.5em 1em;
   background-color: rgb(255, 147, 172);
   border-radius: 1rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: space-around;
   width: 50vw;
+  height: 50vh;
 }
+
+.tasklist {
+  border-bottom:rgb(255, 255, 255, 0.5) 1px solid;
+  padding: 1rem;
+  text-transform: capitalize;
+}
+
+.tasklist h2:nth-child(1) {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.tasklist h2:nth-child(2) {
+  text-align: center;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 3rem;
+  margin-left: 550px;
+}
+
+.tasklist h2:nth-child(3) {
+  font-size: 1rem;
+}
+
+.addTask Form {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.addTask Form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.addTask Form input[type="text"],
+.addTask Form textarea,
+.addTask Form input[type="date"] {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.addTask Form button[type="submit"] {
+  background-color: #000000;
+  color: white;
+  padding: 0 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.addTask Form button[type="submit"]:hover {
+  background-color: #665ebd;
+}
+
+.addTask Form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+
+.tasks {
+  width: 600px;
+  margin: 2rem;
+}
+
+.task {
+  margin: 1rem;
+  line-height: 1.15;
+  font-size: 1.5rem;
+  text-align: left;
+  padding: 1em;
+  /* border-bottom: rgb(248, 201, 99) 1.5px solid; */
+  background-color: rgb(250, 250, 250);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.task:nth-child(odd) {
+  /* border-bottom: rgb(194, 178, 246) 1.5px solid; */
+}
+
+.task > h2 {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+
+.cont1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.cont1 > h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.cont2 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 1rem;
+}
+
