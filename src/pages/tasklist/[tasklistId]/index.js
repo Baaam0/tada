@@ -4,7 +4,7 @@ import axios from 'axios'
 import Component from 'components/login'
 import { prisma } from '../../../../server/db/client'
 import styles from '@/styles/Home.module.css'
-
+import MyComponent from 'components/back'
 
 
 export default function Home({taskLists, tasks}) {
@@ -30,6 +30,7 @@ export default function Home({taskLists, tasks}) {
   return (
     <div className={styles.main}>
     <Component/>
+    <MyComponent/>
 
     <div className={styles.title}>
       <h1>

@@ -5,6 +5,9 @@ import Component from 'components/login'
 import postTaskList from '../api/tasklist';
 import { prisma } from '../../../server/db/client'
 import styles from '@/styles/Home.module.css'
+import React from 'react';
+
+
 
 export default function Home({taskLists}) {
   const [title, setTitle] = useState("");
@@ -43,10 +46,11 @@ export default function Home({taskLists}) {
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
-          placeholder='make new task list' 
+          placeholder='Type new task list' 
+          
           onChange={(e) => setTitle(e.target.value)}
         />
-        <button type='submit'>add</button>
+        <button type='submit'>Add New List</button>
       </form>
     </div>
 
